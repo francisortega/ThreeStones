@@ -1,0 +1,17 @@
+what,kind,bundleId,bundleVersion,description,time
+executed,command,org.eclipse.ui,3.4.1.M20080910-0800,org.eclipse.ui.file.save,1225727257171
+started,bundle,org.eclipse.debug.ui,3.4.1.v20080811_r341,org.eclipse.debug.ui,1225727258674
+started,bundle,org.eclipse.jdt.debug,3.4.0.v20080604,org.eclipse.jdt.debug,1225727258819
+started,bundle,org.eclipse.jdt.debug.ui,3.3.1.v20080730_r341,org.eclipse.jdt.debug.ui,1225727258871
+deactivated,workbench,org.eclipse.ui.workbench,3.4.1.M20080827-0800a,,1225727263171
+activated,workbench,org.eclipse.ui.workbench,3.4.1.M20080827-0800a,,1225727286998
+closed,workbench,org.eclipse.ui.workbench,3.4.1.M20080827-0800a,,1225727289148
+stopped,bundle,org.eclipse.jst.j2ee.xdoclet.runtime,1.1.102.v200805140135,org.eclipse.jst.j2ee.xdoclet.runtime,1225727289435
+stopped,bundle,org.eclipse.jst.j2ee.ejb.annotations.xdoclet,1.2.0.v200805140020,org.eclipse.jst.j2ee.ejb.annotations.xdoclet,1225727289447
+stopped,bundle,org.eclipse.jst.server.generic.jboss,1.5.205.v200805140145,org.eclipse.jst.server.generic.jboss,1225727289448
+stopped,bundle,org.eclipse.jst.server.generic.jonas,1.5.205.v200805140145,org.eclipse.jst.server.generic.jonas,1225727289448
+stopped,bundle,org.eclipse.jst.server.generic.oc4j,1.5.205.v200805140145,org.eclipse.jst.server.generic.oc4j,1225727289448
+stopped,bundle,org.eclipse.jst.server.websphere.core,1.0.302.v20080620,org.eclipse.jst.server.websphere.core,1225727289476
+stopped,bundle,org.eclipse.jst.server.generic.ui,1.0.305.v200805140145,org.eclipse.jst.server.generic.ui,1225727289477
+stopped,bundle,org.eclipse.jst.server.generic.core,1.0.305.v200805140145,org.eclipse.jst.server.generic.core,1225727289492
+stopped,bundle,org.eclipse.mylyn.ide.ant,3.0.2.v20080918-1100-e3x,org.eclipse.mylyn.ide.ant,1225727289493

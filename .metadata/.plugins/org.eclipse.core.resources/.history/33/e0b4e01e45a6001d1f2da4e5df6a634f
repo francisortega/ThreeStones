@@ -1,0 +1,135 @@
+/**
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by  
+ * the Free Software Foundation; version 2 of the License.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+package decode;
+
+import controlmessages.MessageTypes;
+import controlmessages.NoncompliantException;
+
+/**
+ * Decodes a message that is compliant with the TSProtocol. Messages created
+ * using EncodeMessage are interpreted using this class.
+ * 
+ * @author Tony Belanger, A631360
+ * @author Francis Ortega, A635364
+ * @version 10.21.2008
+ */
+public class DecodeMessage {
+	/**
+	 * This method gets the message header (Type of message).
+	 * 
+	 * @param message
+	 * @return
+	 */
+	public static byte getMessageHeader(byte[] message) {
+		byte messageHeader = -1; // -1 means something went wrong
+		try {
+			if (message.length != MessageTypes.CONTROL_MESSAGE_SIZE) {
+				throw new NoncompliantException();
+			} else {
+				messageHeader = message[0]; // MessageType
+			}
+		} catch (Exception ex) {
+			displayErrorMessage(ex);
+		}
+		return messageHeader;
+	}
+
+	/**
+	 * This method gets the current score.
+	 * 
+	 * @param message
+	 * @return the current score.
+	 */
+	public static int[] getScore(byte[] message) {
+		int score[] = { -1, -1 };
+		try {
+			if (message.length != MessageTypes.CONTROL_MESSAGE_SIZE) {
+				throw new NoncompliantException();
+			} else if (message[0] != MessageTypes.SCORE) {
+				throw new NoncompliantException();
+			} else if (message[1] > MessageTypes.MAX_SCORE || message[1] < 0) {
+				throw new NoncompliantException();
+			} else if (message[2] > MessageTypes.MAX_SCORE || message[1] < 0) {
+				throw new NoncompliantException();
+			} else {
+				score[0] = (int) message[1];
+				score[1] = (int) message[2];
+			}
+		} catch (Exception ex) {
+			displayErrorMessage(ex);
+		}
+		return score;
+	}
+
+	/**
+	 * This method gets the last move made.
+	 * 
+	 * @param message
+	 * @return move's coordinates
+	 */
+	public static int[] getMove(byte[] message) {
+		int move[] = { -1, -1 };
+		try {
+			if (message.length != MessageTypes.CONTROL_MESSAGE_SIZE) {
+				throw new NoncompliantException();
+			} else if (message[0] != MessageTypes.MOVE) {
+				throw new NoncompliantException();
+			} else if (message[1] < MessageTypes.MAX_ROWS || message[1] < 0) {
+				throw new NoncompliantException();
+			} else if (message[2] < MessageTypes.MAX_COLUMNS || message[1] < 0) {
+				throw new NoncompliantException();
+			} else {
+				move[0] = (int) message[1];
+				move[1] = (int) message[2];
+			}
+		} catch (Exception ex) {
+			displayErrorMessage(ex);
+		}
+		return move;
+	}
+
+	/**
+	 * This method gets the number of moves left for each player.
+	 * 
+	 * @param message
+	 *            array of bytes
+	 * @return an array of integers containing the number of moves left.
+	 * @throws NoncompliantException
+	 */
+	public static int[] getNumberOfMovesLeft(byte[] message)
+			throws NoncompliantException {
+		int[] numberOfMovesLeft = new int[2];
+
+		if (message.length != MessageTypes.CONTROL_MESSAGE_SIZE) {
+			throw new NoncompliantException();
+		} else if (message[1] > MessageTypes.MAX_NUM_OF_MOVES
+				|| message[2] > MessageTypes.MAX_NUM_OF_MOVES) {
+			throw new NoncompliantException();
+		} else if (message[1] < 0 || message[2] < 0) {
+			throw new NoncompliantException();
+		} else {
+			numberOfMovesLeft[0] = message[1];
+			numberOfMovesLeft[1] = message[2];
+		}
+		return numberOfMovesLeft;
+	}
+
+	/**
+	 * This method displays an error message.
+	 * 
+	 * @param ex
+	 *            error message
+	 */
+	private static void displayErrorMessage(Exception ex) {
+		System.out.println("Communication error! " + ex.getMessage());
+	}
+}
